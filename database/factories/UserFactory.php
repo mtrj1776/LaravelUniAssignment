@@ -9,8 +9,10 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         // Generate a random name for a User
         'name' => $faker->name,
+        // Generate an email address for a User
+        'email' => $faker->unique()->safeEmail,
         // Generate a forum username for a User
-        'display_name' => $faker->userName,
+        'display_name' => $faker->unique()->userName,
         // Assign a rank for the User
         'permission_level' => $faker->randomElement(['administrator', 'moderator', 'user']),
     ];

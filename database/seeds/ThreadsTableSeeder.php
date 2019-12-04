@@ -12,13 +12,12 @@ class ThreadsTableSeeder extends Seeder
      */
     public function run()
     {
-        //setup basic post to test before creating with factories
         $thread = new Thread();
-        //one to many relationship with user, wants the id of the user
-        $thread->user_id = 1;
+        $thread->name = "Test Thread Title";
+        $thread->created_by_user_id = 1;
         $thread->save();
 
-        //factories setup
+        // Generate random data
         factory(App\Thread::class, 50)->create();
     }
 }

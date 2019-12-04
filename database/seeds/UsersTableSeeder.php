@@ -12,14 +12,14 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        //setup basic user to test before creating with factories
-            $user = new User();
-            $user->name = "Jason";
-            $user->display_name = "Jason1977";
-            $user->permission_level = "administrator";
-            $user->save();
+        $user = new User();
+        $user->name = "Jason";
+        $user->email = "jason18776@dhun.com";
+        $user->display_name = "Jason1977";
+        $user->permission_level = "administrator";
+        $user->save();
             
-        //factories setup 50 random users
+        // Generate random data
         factory(App\User::class, 50)->create();
     }
 }

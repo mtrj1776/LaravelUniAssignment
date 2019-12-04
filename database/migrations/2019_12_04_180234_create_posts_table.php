@@ -17,15 +17,18 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
 
-            //one to many relationship with user
-            $table->bigInteger('user_id')->unsigned();
-            //one to many relationship with thread
-            $table->bigInteger('thread_id')->unsigned();
-            $table->string('post_content');
+            // Variable for storing post comment string
+            $table->string('post_comment')->str_limit(255);
             
-            //constraints for user, update only, don't want to delete user on post deletion
+            // Store User who created post
+            $table->bigInteger('user_id')->unsigned();
+
+            // User who created post contraint key
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            //same as above, now for thread
+            
+            // Variable to store thread id that post belongs to
+            $table->bigInteger('thread_id')->unsigned();
+            // Thread post belongs to key constraint
             $table->foreign('thread_id')->references('id')->on('threads')->onDelete('cascade')->onUpdate('cascade');
                             
         });

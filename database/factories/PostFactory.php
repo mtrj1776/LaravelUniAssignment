@@ -12,6 +12,6 @@ $factory->define(Post::class, function (Faker $faker) {
         // Assign post to a thread
         'thread_id' => $faker->unique(true)->numberBetween(1, 50),
         // Assign a sentence to a post
-        'post_content' => $faker->sentence($nbWords = 23, $variableNbWords = true),
+        'post_comment' => $faker->sentence($nbWords = 10, $variableNbWords = true),
     ];
 });

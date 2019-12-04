@@ -13,19 +13,22 @@ class CreatePostUserTable extends Migration
      */
     public function up()
     {
+        // Pivot Table for many to many relationship between post and user
         Schema::create('post_user', function (Blueprint $table) {
-            //composite key
-            $table->primary(['post_id', 'user_id']);
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('post_id')->unsigned();
+            
             $table->timestamps();
 
-            //constraints
-            $table->foreign('user_id')->references('id')->
-            on('users')->onDelete('cascade')->onUpdate('cascade');
-            //same as above, now for thread
-            $table->foreign('post_id')->references('id')->
-                on('posts')->onDelete('cascade')->onUpdate('cascade');
+            // Primary key to allow likes to be counted for multiple users across multiple posts
+            $table->primary(['post_id', 'user_id']);
+
+            // User id for many to many relationship
+            $table->bigInteger('user_id')->unsigned();
+            // user id key constraint
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            // Post id for many to many relationship
+            $table->bigInteger('post_id')->unsigned();
+            // post id key constraint
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

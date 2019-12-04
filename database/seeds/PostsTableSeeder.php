@@ -12,16 +12,13 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        //setup basic post to test before creating with factories
         $post = new Post();
-        //one to many relationship with user, wants the id of the user
-        $post->user_id = 1;
-        //one to many relationship with thread, wants the id of the thread
         $post->thread_id = 1;
-        $post->post_content = "This is the first post of the first thread";
+        $post->user_id = 1;
+        $post->post_comment = "Test Post Comment";
         $post->save();
         
-        //factories setup
+        // Generate random data
         factory(App\Post::class, 50)->create();
         
     }

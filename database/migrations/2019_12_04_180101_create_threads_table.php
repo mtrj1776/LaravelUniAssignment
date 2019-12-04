@@ -16,10 +16,13 @@ class CreateThreadsTable extends Migration
         Schema::create('threads', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            // Variable to store topic name aka title aka topic aka subject
+            $table->string('name');
+            // Id for the creator of the thread
+            $table->bigInteger('created_by_user_id')->unsigned();
 
-            $table->bigInteger('user_id')->unsigned();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            // Thread key constraint, thread can have one user who created
+            $table->foreign('created_by_user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

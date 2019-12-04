@@ -17,8 +17,11 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('name');
+            $table->string('email');
             $table->string('display_name')->unique();
             $table->enum('permission_level',['administrator', 'moderator', 'user']);
+
+            // User also has a signature assigned to it, auto deletes through relationships
         });
     }
 
