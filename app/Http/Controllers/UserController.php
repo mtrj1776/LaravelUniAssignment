@@ -20,6 +20,12 @@ class UserController extends Controller
         return view('users', ['users' => $users]);
     }
 
+    public function getUser($user)
+    {
+        $user = User::find($user);
+
+        return view('user', ['user' => $user]);
+    }
     /**
      * Show the form for creating a new resource.
      *
