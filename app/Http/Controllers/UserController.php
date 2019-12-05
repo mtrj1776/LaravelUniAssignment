@@ -20,12 +20,6 @@ class UserController extends Controller
         return view('users.index', ['users' => $users]);
     }
 
-    public function getUser($user)
-    {
-        $user = User::find($user);
-
-        return view('users.user', ['user' => $user]);
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -34,6 +28,7 @@ class UserController extends Controller
     public function create()
     {
         //
+        return view('users.create');
     }
 
     /**
@@ -45,6 +40,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request['name']);
     }
 
     /**
@@ -56,6 +52,9 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        $user = User::find($id);
+
+        return view('users.show', ['user' => $user]);
     }
 
     /**

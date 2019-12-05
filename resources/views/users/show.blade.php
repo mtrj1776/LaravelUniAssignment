@@ -2,7 +2,7 @@
 
 @section('title', 'User')
 
-@section('body')
+@section('content')
 
 <style>
         table, th, td

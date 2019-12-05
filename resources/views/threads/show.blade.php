@@ -4,7 +4,7 @@
 @section('title', 'Thread')
 
 
-@section('body')
+@section('content')
 
 <style>
     table, th, td
@@ -27,7 +27,7 @@
             @foreach($thread->posts as $post)
             <tr>
                 <td>{{$post->post_comment}}</td>
-                <td>{{$post->likes}}</td>
+                <td>{{dd($post->likes)}}</td>
                 <td>{{$post->created_at}}</td>
             </tr>
             @endforeach

@@ -16,11 +16,14 @@ Route::get('/', function () {
 });
 
 // UserController routes
-Route::get('/users', 'UserController@index');
-
-Route::get('/users/{user_id}', 'UserController@getUser');
+Route::get('/users', 'UserController@index')->name('users.index');
+Route::get('users/create', 'UserController@create')->name('users.create');
+Route::post('users', 'UserController@store')->name('users.store');
+Route::get('/users/{user_id}', 'UserController@show')->name('users.show');
 
 // ThreadController routes
-Route::get('/threads', 'ThreadController@index');
+Route::get('/threads', 'ThreadController@index')->name('threads.index');
 
-Route::get('/threads/{id}', 'ThreadController@getThread');
+
+
+Route::get('/threads/{id}', 'ThreadController@show')->name('threads.show');

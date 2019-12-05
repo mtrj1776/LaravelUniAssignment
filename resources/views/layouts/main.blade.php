@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang='en'>
     <head>
-        <h2>"This is the header mush"</h2>
+            <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
     </head>
     <body>
+        <h3><a href="{{ route('threads.index')}}">Threads</a></h3>
+        <h3><a href="{{ route('users.index')}}">Users</a></h3>
+        {{-- <h3>Likes</h3> --}}
+        {{-- <h3>Last Updated</h3> --}}
 
-        @yield('body')
-
+        @yield('content')
     </body>
     <footer>
     </footer>

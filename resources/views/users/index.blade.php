@@ -4,8 +4,8 @@
 @section('title', 'Users')
 
 
-@section('body')
-
+@section('content')
+<a href="{{ route('users.create')}}">Create User</a>
 <style>
     table, th, td
     {

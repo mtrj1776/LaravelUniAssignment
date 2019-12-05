@@ -4,7 +4,7 @@
 @section('title', 'Threads')
 
 
-@section('body')
+@section('content')
 
 <style>
     table, th, td

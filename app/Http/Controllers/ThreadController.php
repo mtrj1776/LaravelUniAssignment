@@ -20,13 +20,6 @@ class ThreadController extends Controller
         return view('threads.index', ['threads' => $threads]);
     }
 
-    public function getThread($thread)
-    {
-        $thread = Thread::find($thread);
-
-        return view('threads.thread', ['thread' => $thread]);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -57,6 +50,9 @@ class ThreadController extends Controller
     public function show($id)
     {
         //
+        $thread = Thread::find($id);
+
+        return view('threads.show', ['thread' => $thread]);
     }
 
     /**
