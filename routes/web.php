@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// UserController routes
 Route::get('/users', 'UserController@index');
 
-Route::get('users/{user_id}', 'UserController@getUser');
+Route::get('/users/{user_id}', 'UserController@getUser');
+
+// ThreadController routes
+Route::get('/threads', 'ThreadController@index');
+
+Route::get('/threads/{id}', 'ThreadController@getThread');

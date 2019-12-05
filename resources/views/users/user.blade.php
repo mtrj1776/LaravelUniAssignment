@@ -1,10 +1,18 @@
 @extends('layouts.main')
 
+@section('title', 'User')
+
 @section('body')
 
-<table>
+<style>
+        table, th, td
+        {
+            border: 1px solid darkslateblue;
+        }
+    </style>
+    <table align = "center">
     <tr>
-        <th>Username</th>
+        <th>Username</th><tr><tr><tr><tr><tr></tr></tr></tr></tr></tr></tr>
     </tr>
         <ul>
             <tr><td>{{$user->name}}</td></tr>
@@ -14,4 +22,4 @@
        </ul>
 </table>
 
-@stop
+@endsection

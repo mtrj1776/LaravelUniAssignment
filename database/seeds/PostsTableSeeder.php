@@ -19,7 +19,7 @@ class PostsTableSeeder extends Seeder
         $post->save();
         
         // Generate random data
-        factory(App\Post::class, 50)->create();
+        factory(App\Post::class, 500)->create();
         
     }
 }

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Thread;
 
-class UserController extends Controller
+class ThreadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,17 +15,18 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::all();
+        $threads = Thread::all();
 
-        return view('users.index', ['users' => $users]);
+        return view('threads.index', ['threads' => $threads]);
     }
 
-    public function getUser($user)
+    public function getThread($thread)
     {
-        $user = User::find($user);
+        $thread = Thread::find($thread);
 
-        return view('users.user', ['user' => $user]);
+        return view('threads.thread', ['thread' => $thread]);
     }
+
     /**
      * Show the form for creating a new resource.
      *
