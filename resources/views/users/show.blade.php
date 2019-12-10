@@ -4,6 +4,15 @@
 
 @section('content')
 
+@section('content')
+    <form method="POST" action="{{ route('users.destroy', ['id' => $user->user_id]) }}">
+        @csrf
+        @method('DELETE');
+        <button type="submit" value="Delete">
+    </form>
+
+    <p><a href="{{ route('users.index') }}">Back</a></p>
+    
 <style>
         table, th, td
         {
@@ -17,21 +26,23 @@
         <ul>
             <tr><td>{{$user->name}}</td></tr>
             <tr><td>{{$user->display_name}}</td></tr>
-            <tr><td>{{$user->email}}</td></tr>
+            <tr><td><a href="mailto:someone@example.com">{{$user->email}}</a></td></tr>
             <tr><td>{{$user->permission_level}}</td></tr>
-            @foreach ($user->posts as $post)
-            <tr><td><a href='{{$user->post}}'>{{$user->post}}</a></td></tr>
-            {{-- <tr><td>{{$user->post->thread->id}}</td></tr> --}}
-            
-            {{-- <select name="thread">
-                @foreach ($user->threads as $thread)
-                <option value="{{ $thread->id }}">
-                    {{ $thread->name }}
-                </option>
 
-            </select> --}}
-            @endforeach
-            </td></tr>
+            {{-- <td><tr>
+             <select name="thread">
+                 @foreach ($user->threads as $thread)
+                    <option value="{{ $thread }}"
+                    @if($thread == old('thread', $thread->option))
+                      selected = "selected"
+                    @endif
+                    >{{ $thread->name }}</option>
+
+                 @endforeach
+             </select>
+
+            
+            </td></tr> --}}
        </ul>
 
 </table>

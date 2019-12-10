@@ -51,11 +51,11 @@ class UserController extends Controller
         $a->name = $validatedData['name'];
         $a->email = $validatedData['email'];
         $a->display_name = $validatedData['display_name'];
-        $a->permission_level = 'user';
+        // $a->permission_level = 'user';
         $a->save();
 
         session()->flash('message', 'User successfully created.');
-        
+
         return redirect()->route('users.index');
         
 
@@ -108,5 +108,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+        $animal->delete();
+
+        return redirect()->route('users.index')->with('message', 'User was deleted');
     }
 }
