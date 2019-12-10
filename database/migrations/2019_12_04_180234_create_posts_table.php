@@ -21,7 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('post_comment')->str_limit(255);
             
             // Store User who created post
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
 
             // User who created post contraint key
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

@@ -19,6 +19,19 @@
             <tr><td>{{$user->display_name}}</td></tr>
             <tr><td>{{$user->email}}</td></tr>
             <tr><td>{{$user->permission_level}}</td></tr>
+            <tr><td>{{$user->permission_level}}</td></tr>
+            {{-- @foreach ($user->threads as $thread) --}}
+            {{-- <a href='/threads/{{$user->threads->id}}'>{{$user->thread->name}}</a> --}}
+            {{-- @endforeach --}}
+            {{-- <tr><td>
+            <select name="thread">
+                @foreach ($user->threads as $thread)
+                <option value="{{ $thread->id }}">
+                    {{ $thread->name }}
+                </option>
+                @endforeach
+            </select>
+            </td></tr> --}}
        </ul>
 </table>
 
