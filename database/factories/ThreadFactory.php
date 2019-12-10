@@ -10,6 +10,6 @@ $factory->define(Thread::class, function (Faker $faker) {
         // Generate Title names
         'name' => $faker->sentence($nbWords = 5, $variableNbWords = true),
         // Assign a User to each thread
-        'created_by_user_id' => $faker->unique(true)->numberBetween(1, 50),
+        'user_id' => $faker->unique(true)->numberBetween(1, 50),
     ];
 });

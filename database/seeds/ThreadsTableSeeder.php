@@ -14,7 +14,7 @@ class ThreadsTableSeeder extends Seeder
     {
         $thread = new Thread();
         $thread->name = "Test Thread Title";
-        $thread->created_by_user_id = 1;
+        $thread->user_id = 1;
         $thread->save();
 
         // Generate random data

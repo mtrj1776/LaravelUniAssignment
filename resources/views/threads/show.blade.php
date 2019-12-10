@@ -21,13 +21,15 @@
         </style>
         <td><h3>{{$thread->name}}</h3></td>
         <th><h3>Likes</h3></th>
+        <th><h3>Posted By</h3></th>
         <th><h3>Last Updated</h3></th>
     </tr>
         <ul>
             @foreach($thread->posts as $post)
             <tr>
                 <td>{{$post->post_comment}}</td>
-                <td>{{dd($post->likes)}}</td>
+                <td>{{$post->likes}}</td>
+                <td><a href='/users/{{$post->user->id}}'>{{$post->user->name}}</a></td>
                 <td>{{$post->created_at}}</td>
             </tr>
             @endforeach

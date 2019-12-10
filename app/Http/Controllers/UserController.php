@@ -41,23 +41,23 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        if($validatedData = $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|max:255',
             'display_name' => 'required:max:255',
-        ]))
-        {
-            $a = new User;
-            $a->name = $validatedData['name'];
-            $a->email = $validatedData['email'];
-            $a->display_name = $validatedData['display_name'];
-            $a->permission_level = 'user';
-            $a->save();
+        ]);
+        
+        $a = new User;
+        $a->name = $validatedData['name'];
+        $a->email = $validatedData['email'];
+        $a->display_name = $validatedData['display_name'];
+        $a->permission_level = 'user';
+        $a->save();
 
-            session()->flash('message', 'User successfully created.');
-
-            return redirect()->route('users.index');
-        }
+        session()->flash('message', 'User successfully created.');
+        
+        return redirect()->route('users.index');
+        
 
         // return "Passed Validation";
     }
