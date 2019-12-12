@@ -25,7 +25,7 @@
             <tr>
             <td>
                 <a href='/threads/{{$thread->id}}'>{{$thread->name}}</a>
-                <td>{{$thread->likes}}</td>
+                {{-- <td>{{$thread->id->count()}}</td> --}}
                 <td>{{$thread->likes}}</td>
                 <td>{{$thread->created_at}}</td>
             </td>

@@ -18,6 +18,15 @@ class Post extends Model
         return $this->belongsTo('App\Thread');
     }
 
+    public function tags()
+    {
+        // include the model (optional items below if convention was not followed)
+        // name of two models in alphabetical order (for any pivot table on laravel)
+        // current model coloumn id
+        // joining model column id
+        return $this->belongstoMany('App\Tag');
+    }
+
     // A post can have many Users like the post
     public function likes()
     {

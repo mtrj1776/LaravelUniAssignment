@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Thread;
+use App\Post;
 
-class UserController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::all();
 
-        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -29,7 +26,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('users.create');
+        return view('posts.create');
     }
 
     /**
@@ -42,24 +39,17 @@ class UserController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|max:255',
-            'display_name' => 'required:max:255',
+        'post_comment' => 'required|max:255',
+        // get user name and id
         ]);
-        
-        $a = new User;
-        $a->name = $validatedData['name'];
-        $a->email = $validatedData['email'];
-        $a->display_name = $validatedData['display_name'];
-        $a->permission_level = 'user';
+            
+        $a = new Post;
+        $a->post_comment = $validatedData['post_comment'];
         $a->save();
 
-        session()->flash('message', 'User successfully created.');
-
-        return redirect()->route('users.index');
-        
-
-        // return "Passed Validation";
+        return redirect()->back()->with('message', 'Data saved successfully!');
+            
+    
     }
 
     /**
@@ -71,9 +61,6 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        $user = User::find($id);
-
-        return view('users.show', ['user' => $user]);
     }
 
     /**
@@ -108,9 +95,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-        $user = User::findOrFail($id);
-        $user->delete();
-
-        return redirect()->route('users.index')->with('message', 'User was deleted');
     }
 }

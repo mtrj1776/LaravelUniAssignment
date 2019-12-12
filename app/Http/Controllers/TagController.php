@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Thread;
+use App\Tag;
+use Session;
 
-class UserController extends Controller
+class TagController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +21,11 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::all();
+        // grab all tags
+        $tags = Tag::all();
 
-        return view('users.index', ['users' => $users]);
+        // return the view and pass in the tags
+        return view('tags.index')->withTags($tags);
     }
 
     /**
@@ -29,7 +36,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('users.create');
+        return view('tags.create');
     }
 
     /**
@@ -41,25 +48,19 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|max:255',
-            'display_name' => 'required:max:255',
-        ]);
-        
-        $a = new User;
-        $a->name = $validatedData['name'];
-        $a->email = $validatedData['email'];
-        $a->display_name = $validatedData['display_name'];
-        $a->permission_level = 'user';
-        $a->save();
+        // validate the request
+        $this->validate($request, array('name' => 'required|max:255'));
+        // create new tag variable
+        $tag = new Tag();
+        // set tag name to name set in request
+        $tag->name = $request->name;
+        $tag->save();
 
-        session()->flash('message', 'User successfully created.');
+        // flash message tag was created
+        session()->flash('message', 'New Tag was created successfully.');
 
-        return redirect()->route('users.index');
-        
-
-        // return "Passed Validation";
+        // return tothe tags index page
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -70,10 +71,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
-        $user = User::find($id);
-
-        return view('users.show', ['user' => $user]);
+        // could implement a list of posts with the tag when tag was clicked
     }
 
     /**
@@ -108,9 +106,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-        $user = User::findOrFail($id);
-        $user->delete();
-
-        return redirect()->route('users.index')->with('message', 'User was deleted');
     }
 }

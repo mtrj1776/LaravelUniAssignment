@@ -13,7 +13,7 @@
         {{-- <p>Permission: <input type="text" name="permission_level" ></p> --}}
 
         <input type="submit" value="Submit">
-        <br><a href="{{ route('users.index')}}">Cancel</a>
+        <br><a href="{{ redirect()->back()}}">Cancel</a>
 
         {{-- <form action="/users.index" target="_blank"> --}}
 
