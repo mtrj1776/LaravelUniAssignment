@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Thread;
 
 class PostController extends Controller
 {
@@ -40,12 +41,21 @@ class PostController extends Controller
         //
         $validatedData = $request->validate([
         'post_comment' => 'required|max:255',
+        'thread_id' => 'required|',
+        'user_id' => 'required|',
         // get user name and id
         ]);
-            
+    
         $a = new Post;
         $a->post_comment = $validatedData['post_comment'];
+        $a->thread_id =$validatedData['thread_id'];
+        $a->user_id =$validatedData['user_id'];
         $a->save();
+
+        $b = new Thread();
+        $b = Thread::find($validatedData['thread_id']);
+        $b->touch();
+        //$b->save();
 
         return redirect()->back()->with('message', 'Data saved successfully!');
             

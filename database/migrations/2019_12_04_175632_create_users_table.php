@@ -15,12 +15,14 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
             $table->string('name');
-            $table->string('email');
             $table->string('display_name')->unique();
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
             $table->enum('permission_level',['administrator', 'moderator', 'user']);
-
+            $table->rememberToken();
+            $table->timestamps();
             // User also has a signature assigned to it, auto deletes through relationships
         });
     }

@@ -15,7 +15,7 @@ class ThreadController extends Controller
     public function index()
     {
         //
-        $threads = Thread::orderBy('created_at', 'desc')->get();
+        $threads = Thread::orderBy('updated_at', 'desc')->get();
 
         return view('threads.index', ['threads' => $threads]);
     }

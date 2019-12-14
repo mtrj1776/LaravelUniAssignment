@@ -19,9 +19,9 @@ class PostsTableSeeder extends Seeder
         $post->post_comment = "Test Post Comment";
         
         $post->save();
-        $post->tags()->attach(1);
-        $post->tags()->attach(12);
-        $post->tags()->attach(16);
+        // $post->tags()->attach(1);
+        // $post->tags()->attach(12);
+        // $post->tags()->attach(16);
         
         // Generate random data
         factory(App\Post::class, 500)->create();

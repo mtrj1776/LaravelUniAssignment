@@ -14,9 +14,10 @@ class UsersTableSeeder extends Seeder
     {
         $user = new User();
         $user->name = "Jason";
-        $user->email = "jason18776@dhun.com";
         $user->display_name = "Jason1977";
+        $user->email = "mtrj1776@hotmail.co.uk";
         $user->permission_level = "administrator";
+        $user->password = 'jason1234';
         $user->save();
             
         // Generate random data
