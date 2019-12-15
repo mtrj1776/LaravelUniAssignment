@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="row justify-content-center">
+<div class="row justify-content-center pt-3">
     <div class="col-auto">
         <table class="table table-borderless">
             <thead class="thead-light">
@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                    @foreach($thread->posts as $post)
+                    @foreach($thread->posts() as $post)
                     <tr>
                         <td>{{$post->post_comment}}</td>
                         <td><a href='/users/{{$post->user->id}}'>{{$post->user->name}}</a></td>
@@ -31,29 +31,30 @@
                     </tr>
                     @endforeach
             </tbody>
-          </table>
+        </table>
 
-          @auth
-          <div id="PostReplyForm" class="mt-5">
+        <div class="row justify-content-center pt-3">
+            {{ $thread->posts()->links() }}
+        </div>
 
+        @auth
+            <div id="PostReplyForm" class="mt-2">
                 <div class="card-body">
                     <form method="POST" action="{{ route('posts.store', ['post_comment' => "post_comment", 'thread_id' => $thread->id, 'user_id' => \Auth::user()->id]) }}">
-                        @csrf
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="{{__('Type your reply here.')}}" name="post_comment" id="post_comment" rows="5"></textarea>
-                        </div>
+                    @csrf
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="{{__('Type your reply here.')}}" name="post_comment" id="post_comment" rows="5"></textarea>
+                    </div>
 
-                        <div class="form-group">
-                            <button class="btn btn-success btn-lg" type="submit">{{__('Post Reply')}}</button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="form-group">
+                        <button class="btn btn-success btn-lg" type="submit">{{__('Post Reply')}}</button>
+                    </div>
+                </form>
             </div>
-           </div>
-           @else
-                <p>{{__('Only logged in users can post a reply.')}}</p>
-           @endauth
+        </div>
+        @else
+            <p>{{__('Only logged in users can post a reply.')}}</p>
+        @endauth
     </div>
 </div>
-
 @endsection
