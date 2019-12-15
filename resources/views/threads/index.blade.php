@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="row justify-content-center pt-3">
+<div class="row justify-content-center">
     <div class="col-auto">
         <table class="table table-borderless">
             <thead class="thead-light">
@@ -28,10 +28,6 @@
                     @endforeach
             </tbody>
           </table>
-          <div class="row justify-content-center pt-3">
-              {{ $threads->links() }}
-          </div>
     </div>
 </div>
-
 @endsection
