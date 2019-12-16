@@ -13,11 +13,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Thread $thread)
+    public function index()
     {
         //
-        return response()->json($thread->posts()->with('User')->latest());
-        
+
     }
 
     /**
@@ -37,50 +36,31 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     // Reference: https://laravel.com/docs/6.x/validation#quick-ajax-requests-and-validation
-    //     $validatedData = $request->validate([
-    //     'post_comment' => 'required|max:255',
-    //     'thread_id' => 'required|',
-    //     'user_id' => 'required|',
-    //     // get user name and id
-    //     ]);
-    
-    //     $a = new Post;
-    //     $a->post_comment = $validatedData['post_comment'];
-    //     $a->thread_id =$validatedData['thread_id'];
-    //     $a->user_id =$validatedData['user_id'];
-    //     $a->save();
-
-    //     // attempt to update thread updated_at time to allow threads with newest replies to be listed at top of threads page
-    //     $b = new Thread();
-    //     $b = Thread::find($validatedData['thread_id']);
-    //     $b->touch();
-    //     //$b->save();
-
-    //     return redirect()->back()->with('message', 'Data saved successfully!');
-            
-    
-    // }
-
-    public function store(Request $request, Thread $thread)
+    public function store(Request $request)
     {
+        //
         $validatedData = $request->validate([
         'post_comment' => 'required|max:255',
         'thread_id' => 'required|',
         'user_id' => 'required|',
+        // get user name and id
         ]);
-
+    
         $a = new Post;
         $a->post_comment = $validatedData['post_comment'];
         $a->thread_id =$validatedData['thread_id'];
         $a->user_id =$validatedData['user_id'];
         $a->save();
 
-        return $a->toJson();         
-    }
+        $b = new Thread();
+        $b = Thread::find($validatedData['thread_id']);
+        $b->touch();
+        //$b->save();
 
+        return redirect()->back()->with('message', 'Data saved successfully!');
+            
+    
+    }
 
     /**
      * Display the specified resource.
