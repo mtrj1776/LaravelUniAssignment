@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    protected $fillable = [ 'post_comment_box'];
     // A post has one User who created it
     public function user()
     {

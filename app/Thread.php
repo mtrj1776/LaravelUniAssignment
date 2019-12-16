@@ -15,6 +15,7 @@ class Thread extends Model
     // A thread can have many posts created in them
     public function posts()
     {
-        return $this->hasMany('App\Post')->paginate(12);
+        //return $this->hasMany('App\Post')->paginate(12);
+        return $this->hasMany('App\Post');
     }
 }

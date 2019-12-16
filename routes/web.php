@@ -31,6 +31,7 @@ Route::get('/threads/{id}', 'ThreadController@show')->name('threads.show');
 // PostController routes
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
 Route::post('posts', 'PostController@store')->name('posts.store');
+//Route::post('postAjax', 'PostController@storeAjax')->name('postAjax');
 
 // TagController routes
 Route::get('/tags', 'TagController@index')->name('tags.index');
