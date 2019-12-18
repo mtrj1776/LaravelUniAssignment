@@ -3,7 +3,6 @@
 
 @section('title', 'Threads')
 
-
 @section('content')
 
 <div class="row justify-content-center pt-3">

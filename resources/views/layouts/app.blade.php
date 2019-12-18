@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    @yield('scripts')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -20,6 +20,21 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+        @if (session('message'))
+        <p><b>{{ session('message') }}</b></p>
+    @endif
+
+
+    @if ($errors->any())
+        <div>
+            Errors:
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -34,6 +49,7 @@
                         <a class="navbar-brand" href="{{ route('threads.index')}}">Threads</a>
                         <a class="navbar-brand" href="{{ route('users.index')}}">Users</a>
                         <a class="navbar-brand" href="{{ route('tags.index')}}">Tags</a>
+                        <a class="navbar-brand" href="{{ route('posts.create')}}">PostAjax</a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -73,8 +89,11 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            
         </main>
     </div>
+    @yield('content')
+    @yield('bodyscript')
 </body>
+
 </html>

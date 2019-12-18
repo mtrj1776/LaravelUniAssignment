@@ -7,6 +7,7 @@ use App\Thread;
 
 class ThreadController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -88,4 +89,13 @@ class ThreadController extends Controller
     {
         //
     }
+
+    public function apiIndex($id){
+        $thread = Thread::find($id);
+       // dd($thread_id);
+        $posts = $thread->posts;
+        return $posts;
+        //return view('threads.show', ['thread' => $thread]);
+    }
+
 }

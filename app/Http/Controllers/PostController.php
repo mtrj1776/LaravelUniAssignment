@@ -30,6 +30,23 @@ class PostController extends Controller
         return view('posts.create');
     }
 
+    public function apiStore(Request $request){
+    //
+    $validatedData = $request->validate([
+        'post_comment' => 'required|max:255',
+        'thread_id' => 'required|',
+        'user_id' => 'required|',
+        // get user name and id
+        ]);
+    
+        $a = new Post;
+        $a->post_comment = $validatedData['post_comment'];
+        $a->thread_id =$validatedData['thread_id'];
+        $a->user_id =$validatedData['user_id'];
+        $a->save();
+
+        return $a;
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -62,6 +79,19 @@ class PostController extends Controller
     
     }
 
+    public function ajaxRequest()
+    {
+        return view('ajaxRequest');
+    }
+    public function storeAjax(Request $request)
+    {
+        $post = Post::updateOrCreate(
+            ['post_comment' => $request->post_comment],
+        );
+
+        return Response::json($user);
+    }
+    
     /**
      * Display the specified resource.
      *

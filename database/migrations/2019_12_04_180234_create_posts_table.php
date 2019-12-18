@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->timestamps();
 
             // Variable for storing post comment string
-            $table->string('post_comment')->str_limit(255);
+            $table->string('post_comment')->str_limit(255)->nullable();
             
             // Store User who created post
             $table->bigInteger('user_id')->unsigned()->nullable();

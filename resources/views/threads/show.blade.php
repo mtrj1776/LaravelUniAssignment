@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
+{{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
 
 @section('title', 'Thread')
 
-
 @section('content')
-
 <div class="row justify-content-center pt-3">
     <div class="col-auto">
         <table class="table table-borderless">
@@ -40,20 +39,21 @@
         @auth
             <div id="PostReplyForm" class="mt-2">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('posts.store', ['post_comment' => "post_comment", 'thread_id' => $thread->id, 'user_id' => \Auth::user()->id]) }}">
+                    <form method="POST" action="{{ route('api.posts.store', ['post_comment' => "post_comment", 'thread_id' => $thread->id, 'user_id' => \Auth::user()->id]) }}">
                     @csrf
                     <div class="form-group">
                         <textarea class="form-control" placeholder="{{__('Type your reply here.')}}" name="post_comment" id="post_comment" rows="5"></textarea>
                     </div>
-
                     <div class="form-group">
-                        <button class="btn btn-success btn-lg" type="submit">{{__('Post Reply')}}</button>
+                         <button class="btn btn-success btn-lg" type="submit" id="post_comment" value="post_comment">{{__('Post Reply')}}</button>
                     </div>
                 </form>
             </div>
         </div>
         @else
+        <div class="row justify-content-center pt-3">
             <p>{{__('Only logged in users can post a reply.')}}</p>
+        </div>
         @endauth
     </div>
 </div>

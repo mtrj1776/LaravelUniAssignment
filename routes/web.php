@@ -31,7 +31,8 @@ Route::get('/threads/{id}', 'ThreadController@show')->name('threads.show');
 // PostController routes
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
 Route::post('posts', 'PostController@store')->name('posts.store');
-//Route::post('postAjax', 'PostController@storeAjax')->name('postAjax');
+Route::post('posts/storeAjax', 'PostController@storeAjax')->name('posts.storeAjax');
+Route::get('ajaxRequest', 'PostController@ajaxRequest');
 
 // TagController routes
 Route::get('/tags', 'TagController@index')->name('tags.index');
@@ -40,3 +41,4 @@ Route::post('tags', 'TagController@store')->name('tags.store');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
