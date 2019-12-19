@@ -60,6 +60,7 @@
                             <textarea class="form-control" placeholder="{{__('Type your reply here.')}}" name="post_comment" id="post_comment" rows="5"></textarea>
                         </div>
                         
+                        {{-- image button to upload image while creating post --}}
                         <input type="file" name="image" class="btn btn-secondary">
 
                         <div class="row justify-content-center pt-2"></div>
