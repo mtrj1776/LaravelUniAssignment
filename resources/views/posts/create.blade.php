@@ -18,9 +18,9 @@
                 <ul>
                     <li v-for="post in posts">@{{ post.post_comment }}</li>
                 </ul>
-            Thread: <input type="text" id="input" v-model="threadID">
-            Post: <input type="text" id="input" v-model="newPost">
-            <button  class="btn btn-success btn-lg" @click="createPost">Post Reply</button>
+                Thread: <input type="text" id="input" v-model="threadID">
+                Post: <input type="text" id="input" v-model="newPost">
+                <button  class="btn btn-success btn-lg" @click="createPost">Post Reply</button>
             </div>
     </div>
 </div>

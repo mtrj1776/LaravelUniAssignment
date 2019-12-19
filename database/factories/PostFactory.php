@@ -14,5 +14,6 @@ $factory->define(Post::class, function (Faker $faker) {
         'thread_id' => $faker->unique(true)->numberBetween(1, 50),
         // Assign a sentence to a post
         'post_comment' => $faker->sentence($nbWords = 10, $variableNbWords = true),
+        'edited_by' => " ",
         ];
 });

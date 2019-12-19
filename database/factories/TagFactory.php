@@ -9,6 +9,6 @@ $factory->define(Tag::class, function (Faker $faker) {
     return [
         //
         // Generate Title names
-        'name' => $faker->unique(true)->randomElement(['Fun', 'Boring', 'Useless Content', 'Most Important', 'Lax', 'Laravel', 'Web', 'CSS', 'PHP']),
+        'name' => $faker->sentence($nbWords = 1, $variableNbWords = true)
     ];
 });

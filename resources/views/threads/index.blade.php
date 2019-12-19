@@ -12,6 +12,7 @@
               <tr>
                 <th>Thread</th>
                 <th>Posts</th>
+                <th>Views</th>
                 <th>Created By</th>
                 <th>Last Updated</th>
               </tr>
@@ -21,7 +22,9 @@
                     <tr>
                         <td><a href='/threads/{{$thread->id}}'>{{$thread->name}}</a></td>
                         <td>{{$thread->posts()->total()}}</td>
-                        <td>{{$thread->user->name}}</td>
+                        <td>{{$thread->views}}</td>
+                        <td><a href='/users/{{$thread->user->id}}'>{{$thread->user->display_name}}</td>
+                        
                         <td>{{$thread->updated_at}}</td>
                     </tr>
                     @endforeach

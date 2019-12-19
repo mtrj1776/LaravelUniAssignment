@@ -47,9 +47,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <a class="navbar-brand" href="{{ route('threads.index')}}">Threads</a>
+                        @auth
                         <a class="navbar-brand" href="{{ route('users.index')}}">Users</a>
                         <a class="navbar-brand" href="{{ route('tags.index')}}">Tags</a>
                         <a class="navbar-brand" href="{{ route('posts.create')}}">PostAjax</a>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->

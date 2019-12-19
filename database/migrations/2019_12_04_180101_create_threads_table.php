@@ -16,6 +16,8 @@ class CreateThreadsTable extends Migration
         Schema::create('threads', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            // store how many times this thread has been loaded to a view page
+            $table->bigInteger('views')->unsigned()->default(0);
             // Variable to store topic name aka title aka topic aka subject
             $table->string('name');
             // Id for the creator of the thread

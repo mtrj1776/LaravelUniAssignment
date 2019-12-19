@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Providers;
-
+use App\Gateway\GoogleGateway;
+use App\Gateway\Gateway;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // create a singleton to ensure only one instance is present
+        $this->app->singleton(Gateway::class, function($app)
+        {
+            // return a google gateway
+            return new GoogleGateway();
+        });
+
     }
 
     /**

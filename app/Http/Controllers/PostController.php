@@ -30,23 +30,6 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function apiStore(Request $request){
-    //
-    $validatedData = $request->validate([
-        'post_comment' => 'required|max:255',
-        'thread_id' => 'required|',
-        'user_id' => 'required|',
-        // get user name and id
-        ]);
-    
-        $a = new Post;
-        $a->post_comment = $validatedData['post_comment'];
-        $a->thread_id =$validatedData['thread_id'];
-        $a->user_id =$validatedData['user_id'];
-        $a->save();
-
-        return $a;
-    }
     /**
      * Store a newly created resource in storage.
      *
@@ -71,12 +54,32 @@ class PostController extends Controller
 
         $b = new Thread();
         $b = Thread::find($validatedData['thread_id']);
+        // touch command to update the updated_at variable of the parent thread
+        // allows ordering of most up to date thread on the threads index page
         $b->touch();
-        //$b->save();
 
-        return redirect()->back()->with('message', 'Data saved successfully!');
+        return redirect()->back()->with('message', 'New Post Created Successfully!');
             
     
+    }
+
+    public function apiStore(Request $request)
+    {
+        //
+        $validatedData = $request->validate([
+            'post_comment' => 'required|max:255',
+            'thread_id' => 'required|',
+            'user_id' => 'required|',
+            // get user name and id
+            ]);
+        
+            $a = new Post;
+            $a->post_comment = $validatedData['post_comment'];
+            $a->thread_id =$validatedData['thread_id'];
+            $a->user_id =$validatedData['user_id'];
+            $a->save();
+    
+            return $a;
     }
 
     public function ajaxRequest()
@@ -111,7 +114,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = new Post();
+        $post = Post::find($id);
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
@@ -121,9 +126,20 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'id' => 'required|',
+            'post_comment' => 'required|max:255',
+            'edited_by' => 'required|',
+            ]);
+        
+            $a = Post::find($validatedData['id']);
+            $a->post_comment = $validatedData['post_comment'];
+            $a->edited_by =$validatedData['edited_by'];
+            $a->save();
+    
+            return redirect()->back()->with('message', 'Post Edit Saved!');
     }
 
     /**
@@ -134,6 +150,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        return redirect()->back()->with('message', 'Post was deleted');
     }
 }

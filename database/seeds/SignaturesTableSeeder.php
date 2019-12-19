@@ -14,7 +14,7 @@ class SignaturesTableSeeder extends Seeder
     {
         //
         $signature = new Signature();
-        $signature->signature = "hello this is a signature";
+        $signature->signature = "This is a One to One Relationship between User and Signature Models";
         $signature->user_id = 1;
         $signature->save();
 

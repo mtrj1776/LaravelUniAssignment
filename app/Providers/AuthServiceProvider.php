@@ -26,5 +26,40 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //
+        Gate::define('canCreate', function ($user)
+        {
+            if($user->canCreate == 1 || $user->permission_level == 'administrator')
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        });
+
+        Gate::define('canEdit', function ($user, $post)
+        {
+            if($user->id == $post->user_id || $user->permission_level == 'administrator')
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        });
+
+        Gate::define('canDelete', function ($user, $post)
+        {
+            if($user->id == $post->user_id || $user->permission_level == 'administrator')
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        });
     }
 }

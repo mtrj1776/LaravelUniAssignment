@@ -19,6 +19,8 @@ class CreatePostsTable extends Migration
 
             // Variable for storing post comment string
             $table->string('post_comment')->str_limit(255)->nullable();
+            // Variable for saying who edited post
+            $table->string('edited_by')->str_limit(255)->nullable()->default(" ");
             
             // Store User who created post
             $table->bigInteger('user_id')->unsigned()->nullable();

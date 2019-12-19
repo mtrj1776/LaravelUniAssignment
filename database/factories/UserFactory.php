@@ -16,7 +16,8 @@ $factory->define(User::class, function (Faker $faker) {
         // Generate a forum username for a User
         'display_name' => $faker->userName,
         // Assign a rank for the User
-        'permission_level' => $faker->randomElement(['administrator', 'moderator', 'user']),
+        'permission_level' => $faker->randomElement(['administrator', 'user']),
+        'canCreate' => 1,
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
     ];

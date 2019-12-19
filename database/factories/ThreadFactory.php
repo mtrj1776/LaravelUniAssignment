@@ -11,5 +11,6 @@ $factory->define(Thread::class, function (Faker $faker) {
         'name' => $faker->sentence($nbWords = 5, $variableNbWords = true),
         // Assign a User to each thread
         'user_id' => $faker->unique(true)->numberBetween(1, 50),
+        'views' => $faker->unique(true)->numberBetween(1, 24),
     ];
 });

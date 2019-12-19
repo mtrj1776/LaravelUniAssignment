@@ -17,6 +17,7 @@ class PostsTableSeeder extends Seeder
         $post->thread_id = 1;
         $post->user_id = 1;
         $post->post_comment = "Test Post Comment";
+        $post->edited_by = " ";
         
         $post->save();
         // $post->tags()->attach(1);

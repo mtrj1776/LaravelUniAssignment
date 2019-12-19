@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // storage location for data recived from google
+    'google' => [
+        'client_id' => env('GOOGLE_ACCESS_KEY_ID'),
+        'client_secret' => env('GOOGLE_SECRET_ACCESS_KEY'),
+        'redirect' => 'http://127.0.0.1:8000/login/gateway/callback',
+    ],
 ];
