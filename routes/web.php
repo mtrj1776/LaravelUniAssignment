@@ -29,7 +29,7 @@ Route::get('/threads', 'ThreadController@index')->name('threads.index');
 Route::get('/threads/{id}', 'ThreadController@show')->name('threads.show');
 
 // PostController routes
-Route::get('/posts/create', 'PostController@create')->name('posts.create');
+Route::get('/posts/create/{id}', 'PostController@create')->name('posts.create');
 Route::post('posts', 'PostController@store')->name('posts.store');
 Route::post('/posts/update', 'PostController@update')->name('posts.update');
 Route::get('/posts/{id}/edit', 'PostController@edit')->name('posts.edit');

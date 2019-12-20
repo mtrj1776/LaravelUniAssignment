@@ -67,6 +67,7 @@
 
                         <div class="form-group">
                             <button class="btn btn-success btn-lg" type="submit" id="post_comment" value="post_comment">{{__('Post Reply')}}</button>
+                            <a href="{{ route('posts.create', [$thread->id]) }}" button class="btn btn-warning">Post With Ajax</a>
                         </div>
                     </form>
                 </div>

@@ -51,7 +51,7 @@ class ThreadController extends Controller
     public function show($id)
     {
         //
-        $thread = Thread::find($id);
+        $thread = Thread::findOrFail($id);
 
         // disable timestamp to ensure viewing thread does not mark table as updated
         // if this is left enabled then thread will act as if new post has been added and jump to top of threads index view

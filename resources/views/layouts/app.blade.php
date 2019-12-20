@@ -50,7 +50,6 @@
                         @auth
                         <a class="navbar-brand" href="{{ route('users.index')}}">Users</a>
                         <a class="navbar-brand" href="{{ route('tags.index')}}">Tags</a>
-                        <a class="navbar-brand" href="{{ route('posts.create')}}">PostAjax</a>
                         @endauth
                     </ul>
 

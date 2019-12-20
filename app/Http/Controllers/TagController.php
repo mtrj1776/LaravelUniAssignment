@@ -50,17 +50,17 @@ class TagController extends Controller
         //
         // validate the request
         $this->validate($request, array('name' => 'required|max:255'));
+
+        session()->flash('message', 'Data Validated Successfully');
+        
         // create new tag variable
         $tag = new Tag();
         // set tag name to name set in request
         $tag->name = $request->name;
         $tag->save();
 
-        // flash message tag was created
-        session()->flash('message', 'New Tag was created successfully.');
-
         // return tothe tags index page
-        return redirect()->route('tags.index');
+        return redirect()->route('tags.index')->with('message', 'New Tag was created successfully.');
     }
 
     /**

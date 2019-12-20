@@ -24,10 +24,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
-        return view('posts.create');
+        $thread = Thread::findOrFail($id);
+
+        return view('posts.create')->with('thread', $thread);
     }
 
     /**
@@ -46,6 +48,8 @@ class PostController extends Controller
         // get user name and id
         ]);
     
+        session()->flash('message', 'Data Validated Successfully');
+
         $a = new Post;
         $a->post_comment = $validatedData['post_comment'];
         $a->thread_id =$validatedData['thread_id'];
@@ -73,13 +77,20 @@ class PostController extends Controller
             // get user name and id
             ]);
         
-            $a = new Post;
-            $a->post_comment = $validatedData['post_comment'];
-            $a->thread_id =$validatedData['thread_id'];
-            $a->user_id =$validatedData['user_id'];
-            $a->save();
-    
-            return $a;
+        session()->flash('message', 'Data Validated Successfully');
+
+        $a = new Post;
+        $a->post_comment = $validatedData['post_comment'];
+        $a->thread_id =$validatedData['thread_id'];
+        $a->user_id =$validatedData['user_id'];
+        $a->save();
+        session()->flash('message', 'Data Validated Successfully');
+        $b = new Thread();
+        $b = Thread::find($validatedData['thread_id']);
+        // touch command to update the updated_at variable of the parent thread
+        // allows ordering of most up to date thread on the threads index page
+        $b->touch();
+        return $a;
     }
 
     public function ajaxRequest()
@@ -92,7 +103,9 @@ class PostController extends Controller
             ['post_comment' => $request->post_comment],
         );
 
-        return Response::json($user);
+        session()->flash('message', 'Data Validated Successfully');
+
+        return json($user);
     }
     
     /**
@@ -134,12 +147,14 @@ class PostController extends Controller
             'edited_by' => 'required|',
             ]);
         
+            session()->flash('message', 'Data Validated Successfully');
+
             $a = Post::find($validatedData['id']);
             $a->post_comment = $validatedData['post_comment'];
             $a->edited_by =$validatedData['edited_by'];
             $a->save();
-    
-            return redirect()->back()->with('message', 'Post Edit Saved!');
+
+            return redirect()->route('threads.show', array($a->thread))->with('message', 'Post Updated Successfully');
     }
 
     /**
@@ -151,8 +166,10 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
+        // store thread to enable return view
+        $thread = Thread::findOrFail($post->thread_id);
         $post->delete();
-
-        return redirect()->back()->with('message', 'Post was deleted');
+        //session()->flash('message', 'Post Deleted Successfully');
+        return redirect()->route('threads.show', array($thread))->with('message', 'Post Deleted Successfully');
     }
 }
