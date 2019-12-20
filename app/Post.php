@@ -28,9 +28,8 @@ class Post extends Model
         return $this->belongstoMany('App\Tag');
     }
 
-    // A post can have many Users like the post
-    public function likes()
+    public function image()
     {
-        return $this->belongsToMany('App\User');
+        return $this->image_file;
     }
 }

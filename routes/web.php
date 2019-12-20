@@ -35,6 +35,8 @@ Route::post('/posts/update', 'PostController@update')->name('posts.update');
 Route::get('/posts/{id}/edit', 'PostController@edit')->name('posts.edit');
 Route::post('posts/storeAjax', 'PostController@storeAjax')->name('posts.storeAjax');
 Route::delete('posts/{id}', 'PostController@destroy')->name('posts.destroy');
+Route::get('image/upload', 'PostController@imageShow')->name('image.show');
+Route::post('image/store', 'PostController@imageStore')->name('image.store');
 Route::get('ajaxRequest', 'PostController@ajaxRequest');
 
 // TagController routes

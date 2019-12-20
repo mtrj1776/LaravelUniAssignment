@@ -172,4 +172,29 @@ class PostController extends Controller
         //session()->flash('message', 'Post Deleted Successfully');
         return redirect()->route('threads.show', array($thread))->with('message', 'Post Deleted Successfully');
     }
+
+    public function imageShow()
+    {
+        return view('image/Upload');
+    }
+
+    public function imageStore(Request $request)
+    {
+   
+        $request->validate([
+            'name' => 'required|',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            
+        ]);
+
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+
+        $post = Post::find($request['name']);
+        $post->image_path = $imageName;
+        $post->save();
+
+        return back()->with('success','You have successfully upload image.')->with('image',$imageName);
+
+    }
 }
